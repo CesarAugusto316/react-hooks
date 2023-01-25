@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "6daab607-1028-40d2-94ef-b5b28887c542",
+    "colId": "6abbfb78-6bed-4199-a4a3-2b2c5699be9c",
+    "containerId": "",
+    "name": "gifs",
+    "url": "https://api.giphy.com/v1/gifs/search?api_key=rFnnlbGo7zTuLsZac3g29ryhRWl8o4uv&q=dragon&limit=10",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-01-25T14:53:12.295Z",
+    "modified": "2023-01-25T15:09:27.920Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "api_key",
+        "value": "rFnnlbGo7zTuLsZac3g29ryhRWl8o4uv",
+        "isPath": false
+      },
+      {
+        "name": "q",
+        "value": "dragon",
+        "isPath": false
+      },
+      {
+        "name": "limit",
+        "value": "10",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  }
+]
