@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { Gif } from '../App';
+import { useFetchGifs } from '../hooks/useFetchGifs';
 import gifsService from '../services/gifsService';
 
 
@@ -10,21 +11,30 @@ interface Props {
 }
 
 export const CategoriesList: FC<Props> = ({ searchQuery }) => {
-  const [categories, setCategories] = useState<Gif[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+
+  // const [categories, setCategories] = useState<Gif[]>([]);
+  // const [isLoading, setIsLoading] = useState(false);
   const [counter, setCounter] = useState(0);
+  const { categories, isLoading } = useFetchGifs(searchQuery);
 
 
-  useEffect(() => {
-    gifsService.search(searchQuery)
-      .then((res) => {
-        setCategories(res);
-        console.log(res);
-      })
-      .catch(err => console.log(err));
+  // useEffect(() => {
+  //   gifsService.search(searchQuery)
+  //     .then((res) => {
+  //       setCategories(res);
+  //       console.log(res);
+  //     })
+  //     .catch(err => console.log(err));
 
-  }, [searchQuery]);
+  // }, [searchQuery]);
 
+  const Categories = categories.map((cat) => (
+    // if categories.length === 0 'No categories found';
+    <li key={cat.id}>
+      <h3>{cat.title}</h3>
+      <img src={cat.imageUrl} alt={cat.title} />
+    </li>
+  ));
 
   return (
     <ul>
@@ -32,12 +42,9 @@ export const CategoriesList: FC<Props> = ({ searchQuery }) => {
         Counter{counter}
       </button>
 
-      {categories.map((cat) => (
-        <li key={cat.id}>
-          <h3>{cat.title}</h3>
-          <img src={cat.imageUrl} alt={cat.title} />
-        </li>
-      ))}
+      {isLoading ?
+        <p>is loading...</p>
+        : Categories}
     </ul>
   );
 };
